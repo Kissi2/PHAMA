@@ -1,0 +1,18 @@
+<section class="section bg-navy on-dark" id="temoignages">
+  <div class="container-x">
+    <div class="testi-head">
+      <span class="eyebrow reveal">Témoignages</span>
+      <h2 class="h-2 reveal sec-title">Ce qu'en disent les pharmaciens.</h2>
+    </div>
+
+    <div class="pg-testi-grid" appStagger="0.1">
+      @for (t of items; track t.name) {
+        <div class="pg-testi reveal">
+          <p class="pg-testi-body">{{ t.quote }}</p>
+          <div class="pg-testi-name">{{ t.name }}</div>
+          <div class="pg-testi-role">{{ t.role }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

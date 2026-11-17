@@ -1,0 +1,2 @@
+/* Les sections sont des blocs pleine largeur. */
+main > * { display: block; }

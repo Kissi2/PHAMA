@@ -1,0 +1,5 @@
+.nav-row--full { max-width: 100%; }
+.logo-mark { display: inline; vertical-align: -.25em; margin-right: 7px; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.mm-cta { margin-top: 24px; }
+.mm-btn { justify-content: space-between; }

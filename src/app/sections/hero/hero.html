@@ -1,0 +1,42 @@
+<section class="pg-hero bg-navy on-dark" id="accueil">
+  <!-- Tuiles décoratives -->
+  <div class="pg-tile float tile-square"></div>
+  <div class="pg-tile tile-dot"></div>
+  <div class="pg-tile float tile-line"></div>
+
+  <div class="container-x" appStagger="0.08">
+    <span class="eyebrow reveal">e-Pharma · Côte d'Ivoire · Depuis 2026</span>
+
+    <h1 class="pg-manifesto reveal">
+      PILOTEZ<br />
+      LA TRÉSORERIE<br />
+      DE VOTRE<br />
+      PHARMACIE<br />
+      AVEC <span class="pg-pill">PRÉCISION</span>
+    </h1>
+
+    <p class="pg-hero-sub reveal">
+      Journal de trésorerie, caisses, factures fournisseurs et analyses financières — tout en un, pensé pour les pharmacies en Côte d'Ivoire.
+    </p>
+
+    <div class="pg-hero-ctas reveal">
+      <a href="#contact" class="btn pulse-cta">
+        Demander une démo
+        <i><svg appIcon="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"></svg></i>
+      </a>
+      <a href="#fonctionnalites" class="btn btn-ghost">
+        Voir les modules
+        <i><svg appIcon="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"></svg></i>
+      </a>
+    </div>
+
+    <div class="pg-hero-meta reveal">
+      @for (item of meta; track item.label) {
+        <div>
+          <div class="pg-meta-num">{{ item.value }}</div>
+          <div class="pg-meta-label">{{ item.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+.compare-intro { text-align: center; padding-block: clamp(48px,6vw,72px); background: var(--color-canvas); }
+.sec-title { margin-top: 8px; }
+
+.pg-compare { display: grid; grid-template-columns: 1fr 1fr; }
+@media (max-width:768px) { .pg-compare { grid-template-columns: 1fr; } }
+.pg-compare-side { padding: clamp(48px,7vw,80px) clamp(20px,5vw,60px); }
+.pg-compare-before { background: var(--color-navy-950); }
+.pg-compare-after { background: var(--color-canvas); }
+.pg-compare-after .pg-compare-title { color: var(--color-brand); }
+.pg-compare-after .pg-compare-item { color: var(--color-ink); }
+.pg-compare-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .2em; margin-bottom: 24px; color: rgba(255,255,255,.45); }
+.pg-compare-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 15px; color: rgba(255,255,255,.75); }
+.pg-compare-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }

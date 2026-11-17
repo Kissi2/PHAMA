@@ -1,0 +1,32 @@
+<section class="section" id="fonctionnalites">
+  <div class="container-x">
+    <div class="sec-head">
+      <div class="sec-head-text">
+        <span class="eyebrow reveal">Modules &amp; Fonctionnalités</span>
+        <h2 class="h-2 reveal sec-title">Tout ce dont votre pharmacie a besoin, en un seul outil.</h2>
+        <p class="reveal sec-lead">
+          {{ moduleCount }} modules organisés en {{ categories.length }} domaines métier, pensés pour la réalité des pharmacies en Côte d'Ivoire.
+        </p>
+      </div>
+      <span class="badge reveal badge-lg">{{ moduleCount }} modules</span>
+    </div>
+
+    <div class="pg-cat-grid" appStagger="0.05">
+      @for (cat of categories; track cat.title) {
+        <div class="pg-cat reveal">
+          <div class="pg-cat-head">
+            <div class="pg-cat-icon">
+              <svg [appIcon]="cat.icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"></svg>
+            </div>
+            <div class="pg-cat-title">{{ cat.title }}</div>
+          </div>
+          <ul class="pg-mod-list">
+            @for (mod of cat.modules; track mod) {
+              <li><span class="pg-mod-dot"></span>{{ mod }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
