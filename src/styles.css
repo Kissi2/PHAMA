@@ -63,6 +63,12 @@ p{margin:0}
 .nav-links{display:flex;gap:4px;margin:0 20px 0 auto}
 .nav-links a{color:rgba(255,255,255,.75);font-size:15px;font-weight:500;padding:8px 14px;border-radius:8px;transition:color .2s,background .2s}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+/* Onglet de la section en cours : texte blanc + trait ambre dessous. */
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;border-radius:2px;background:var(--amber);transform:scaleX(0);transition:transform .3s var(--ease)}
+.nav-links a.active{color:#fff}
+.nav-links a.active::after{transform:scaleX(1)}
+.mobile-menu a.active{color:var(--amber)}
 .nav-cta{display:flex;align-items:center;gap:10px}
 .burger{display:none;width:42px;height:42px;border-radius:10px;border:0;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;place-items:center}
 .mobile-menu{display:none}

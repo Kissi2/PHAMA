@@ -1,5 +1,5 @@
 import { LucideAngularModule } from 'lucide-angular';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, signal } from '@angular/core';
 import { NAV_LINKS, SALES_PHONES } from '../../data/site.data';
 import { PillModal } from '../../shared/pill-modal';
 
@@ -14,7 +14,7 @@ import { PillModal } from '../../shared/pill-modal';
         <a href="#" class="logo" aria-label="TresoPharm — accueil"><img class="logo-img" src="logo-mark.png" alt="" /><span class="logo-name">Treso<span>Pharm</span></span></a>
         <nav class="nav-links" aria-label="Navigation principale">
           @for (link of links; track link.href) {
-            <a [href]="link.href">{{ link.label }}</a>
+            <a [href]="link.href" [class.active]="active() === link.href" [attr.aria-current]="active() === link.href ? 'location' : null">{{ link.label }}</a>
           }
         </nav>
         <div class="nav-cta">
@@ -34,7 +34,7 @@ import { PillModal } from '../../shared/pill-modal';
 
     <div class="mobile-menu" id="mobile-menu" [class.open]="open()">
       @for (link of links; track link.href) {
-        <a [href]="link.href" (click)="open.set(false)">{{ link.label }}</a>
+        <a [href]="link.href" [class.active]="active() === link.href" [attr.aria-current]="active() === link.href ? 'location' : null" (click)="open.set(false)">{{ link.label }}</a>
       }
       <button type="button" class="btn btn-primary" aria-haspopup="dialog" (click)="open.set(false); sales.open()">Contacter l'équipe</button>
     </div>
@@ -49,7 +49,29 @@ export class Header {
   protected readonly scrolled = signal(typeof window !== 'undefined' && window.scrollY > 20);
   protected readonly open = signal(false);
 
+  /** Onglet de la section en cours de lecture (ex. '#tarifs'), mis en évidence dans le header. */
+  protected readonly active = signal<string | null>(null);
+
+  constructor() {
+    afterNextRender(() => this.updateActive());
+  }
+
   protected onScroll(): void {
     this.scrolled.set(window.scrollY > 20);
+    this.updateActive();
+  }
+
+  /**
+   * La section active est la dernière dont le haut a dépassé le tiers supérieur de l'écran.
+   * Les sections intermédiaires (chiffres, avant/après, étapes…) gardent l'onglet précédent.
+   */
+  private updateActive(): void {
+    const mark = window.innerHeight / 3;
+    let current: string | null = null;
+    for (const link of this.links) {
+      const section = document.querySelector(link.href);
+      if (section && section.getBoundingClientRect().top <= mark) current = link.href;
+    }
+    this.active.set(current);
   }
 }
