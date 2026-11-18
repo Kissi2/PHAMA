@@ -1,41 +1,35 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MenuService } from './core/menu.service';
-import { PreferencesService } from './core/preferences.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Footer } from './layout/footer/footer';
 import { Header } from './layout/header/header';
-import { PreferencesPanel } from './layout/preferences-panel/preferences-panel';
-import { Compare } from './sections/compare/compare';
-import { Cta } from './sections/cta/cta';
-import { Features } from './sections/features/features';
-import { Hero } from './sections/hero/hero';
-import { Pricing } from './sections/pricing/pricing';
-import { Ribbon } from './sections/ribbon/ribbon';
-import { Stats } from './sections/stats/stats';
-import { Steps } from './sections/steps/steps';
-import { Testimonials } from './sections/testimonials/testimonials';
+import { Band } from './sections/band';
+import { Compare } from './sections/compare';
+import { Cta } from './sections/cta';
+import { Features } from './sections/features';
+import { Hero } from './sections/hero';
+import { Pricing } from './sections/pricing';
+import { Stats } from './sections/stats';
+import { Steps } from './sections/steps';
+import { Testimonials } from './sections/testimonials';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    Header,
-    Hero,
-    Ribbon,
-    Stats,
-    Compare,
-    Features,
-    Steps,
-    Pricing,
-    Testimonials,
-    Cta,
-    Footer,
-    PreferencesPanel,
-  ],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  imports: [Header, Hero, Band, Stats, Compare, Features, Steps, Pricing, Testimonials, Cta, Footer],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <a href="#main" class="skip">Aller au contenu</a>
+    <app-header />
+    <main id="main">
+      <app-hero />
+      <app-band />
+      <app-stats />
+      <app-compare />
+      <app-features />
+      <app-steps />
+      <app-pricing />
+      <app-testimonials />
+      <app-cta />
+    </main>
+    <app-footer />
+  `,
 })
-export class App {
-  protected readonly menu = inject(MenuService);
-  // Instancié dès le démarrage pour appliquer thème et mouvement réduit.
-  private readonly prefs = inject(PreferencesService);
-}
+export class App {}

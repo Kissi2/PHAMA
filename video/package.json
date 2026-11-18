@@ -1,0 +1,21 @@
+{
+  "name": "tresopharm-video",
+  "private": true,
+  "description": "Vidéo Remotion du tableau de bord affichée dans le hero du site (public/dashboard-loop.mp4).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts DashboardLoop ../public/dashboard-loop.mp4 --codec=h264 --crf=20 --scale=2 --pixel-format=yuv420p --browser-executable=\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\""
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.540",
+    "@remotion/google-fonts": "4.0.540",
+    "lucide-react": "1.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.540"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}

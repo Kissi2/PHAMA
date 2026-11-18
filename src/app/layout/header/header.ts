@@ -1,83 +1,55 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  HostListener,
-  inject,
-  signal,
-  viewChild,
-} from '@angular/core';
-import { MenuService } from '../../core/menu.service';
-import { NAV_LINKS } from '../../data/site.data';
-import { Icon } from '../../shared/icon/icon';
+import { LucideAngularModule } from 'lucide-angular';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { NAV_LINKS, SALES_PHONES } from '../../data/site.data';
+import { PillModal } from '../../shared/pill-modal';
 
 @Component({
   selector: 'app-header',
-  imports: [Icon],
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+  imports: [LucideAngularModule, PillModal],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '(window:scroll)': 'onScroll()' },
+  template: `
+    <header class="header" [class.scrolled]="scrolled()">
+      <div class="container nav">
+        <a href="#" class="logo" aria-label="TresoPharm — accueil"><img class="logo-img" src="logo-mark.png" alt="" /><span class="logo-name">Treso<span>Pharm</span></span></a>
+        <nav class="nav-links" aria-label="Navigation principale">
+          @for (link of links; track link.href) {
+            <a [href]="link.href">{{ link.label }}</a>
+          }
+        </nav>
+        <div class="nav-cta">
+          <button type="button" class="btn btn-primary btn-sm" aria-haspopup="dialog" (click)="sales.open()">Contacter l'équipe</button>
+          <button
+            class="burger"
+            aria-label="Ouvrir le menu"
+            aria-controls="mobile-menu"
+            [attr.aria-expanded]="open()"
+            (click)="open.set(!open())"
+          >
+            <lucide-icon name="menu" [size]="22" />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" [class.open]="open()">
+      @for (link of links; track link.href) {
+        <a [href]="link.href" (click)="open.set(false)">{{ link.label }}</a>
+      }
+      <button type="button" class="btn btn-primary" aria-haspopup="dialog" (click)="open.set(false); sales.open()">Contacter l'équipe</button>
+    </div>
+
+    <!-- Même modale gélule que l'encadré de contact : numéros de l'équipe commerciale -->
+    <app-pill-modal #sales title="Équipe commerciale" [phone]="phones" hours="Du lundi au vendredi, 8 h – 18 h" />
+  `,
 })
 export class Header {
-  protected readonly menu = inject(MenuService);
   protected readonly links = NAV_LINKS;
+  protected readonly phones = SALES_PHONES;
+  protected readonly scrolled = signal(typeof window !== 'undefined' && window.scrollY > 20);
+  protected readonly open = signal(false);
 
-  protected readonly scrolled = signal(false);
-  protected readonly hidden = signal(false);
-  protected readonly progress = signal(0);
-  protected readonly active = signal('');
-
-  private readonly burger = viewChild<ElementRef<HTMLButtonElement>>('burger');
-  private lastY = 0;
-  private ticking = false;
-
-  constructor() {
-    if (typeof window !== 'undefined') {
-      this.lastY = window.scrollY;
-      requestAnimationFrame(() => this.update());
-    }
-  }
-
-  @HostListener('window:scroll')
-  @HostListener('window:resize')
   protected onScroll(): void {
-    if (this.ticking) return;
-    this.ticking = true;
-    requestAnimationFrame(() => {
-      this.update();
-      this.ticking = false;
-    });
-  }
-
-  @HostListener('document:keydown.escape')
-  protected onEscape(): void {
-    if (!this.menu.open()) return;
-    this.menu.close();
-    this.burger()?.nativeElement.focus();
-  }
-
-  private update(): void {
-    const y = window.scrollY;
-    const doc = document.documentElement;
-
-    this.scrolled.set(y > 24);
-    this.hidden.set(y > this.lastY && y > 320);
-
-    const max = doc.scrollHeight - window.innerHeight;
-    this.progress.set(max > 0 ? y / max : 0);
-
-    // Scrollspy
-    const probe = y + window.innerHeight * 0.35;
-    let current = '';
-    for (const link of this.links) {
-      const el = document.getElementById(link.href.slice(1));
-      if (el && el.offsetTop <= probe) current = link.href;
-    }
-    if (window.innerHeight + y >= doc.scrollHeight - 4) {
-      current = this.links[this.links.length - 1].href;
-    }
-    this.active.set(current);
-
-    this.lastY = y;
+    this.scrolled.set(window.scrollY > 20);
   }
 }
