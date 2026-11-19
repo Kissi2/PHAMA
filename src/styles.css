@@ -86,7 +86,7 @@ p{margin:0}
 .hero-trust svg{width:16px;height:16px;color:var(--amber)}
 
 /* Dashboard mockup */
-/* Aperçu pleine largeur du conteneur : son bord gauche s'aligne sur le logo TresoPharm du header. */
+/* Aperçu pleine largeur du conteneur : du logo TresoPharm à la fin du bouton « Contacter l'équipe ». */
 .showcase{position:relative;margin:64px auto 0;perspective:2000px}
 .showcase::before{content:"";position:absolute;left:10%;right:10%;top:8%;height:70%;background:radial-gradient(closest-side,rgba(244,183,62,.28),transparent);filter:blur(40px);z-index:0}
 .app{position:relative;z-index:1;background:#fff;border-radius:16px 16px 0 0;box-shadow:var(--shadow-lg),0 0 0 1px rgba(255,255,255,.08);overflow:hidden;transform:rotateX(8deg);transform-origin:50% 100%;transition:transform 1.2s var(--ease)}
@@ -225,7 +225,7 @@ p{margin:0}
 .price-amt{font-family:var(--display);font-weight:800;font-size:40px;color:var(--ink);letter-spacing:-.04em;margin-top:14px;line-height:1}
 .price-amt small{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
 .price-per{font-size:14px;color:var(--muted);margin-top:8px}
-.price ul{list-style:none;padding:24px 0 0;margin:24px 0 28px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px;flex:1}
+.price ul{list-style:none;padding:24px 0 0;margin:24px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px;flex:1}
 .price li{display:flex;gap:10px;font-size:14.5px}
 .price li svg{width:18px;height:18px;flex:none;color:var(--brand-500);margin-top:2px}
 .price.featured{background:linear-gradient(165deg,var(--brand),#12341c);border-color:transparent;color:rgba(255,255,255,.75);box-shadow:var(--shadow-lg);position:relative;transform:translateY(-12px)}
@@ -253,11 +253,11 @@ p{margin:0}
 /* Footer */
 .footer{background:var(--deep);color:rgba(255,255,255,.55);padding:72px 0 32px;font-size:14.5px}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
-.foot-grid p{margin-top:16px;max-width:300px;line-height:1.7}
+.foot-grid p{margin-top:16px;max-width:270px;line-height:1.7}
 .foot-h{color:#fff;font-weight:600;font-size:14px;margin-bottom:16px}
 .foot-grid a.fl,.foot-grid span.fl{display:block;padding:5px 0;transition:color .2s}
 .foot-grid a.fl:hover{color:#fff}
-.dl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;justify-content:center;max-width:300px}
+.dl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;justify-content:center;max-width:270px} /* même largeur que le texte au-dessus : badge centré sous lui */
 .dl-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.8);padding:8px 12px;border-radius:9px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
 .dl-btn svg{width:15px;height:15px}
 .foot-bottom{margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
@@ -333,24 +333,24 @@ button.btn{font-family:inherit}
 .pill-modal::backdrop{background:rgba(12,31,18,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .pill-modal[open] .capsule{animation:capsule-in .45s var(--ease)}
 @keyframes capsule-in{from{opacity:0;transform:scale(.85) rotate(-6deg)}to{opacity:1;transform:none}}
-.capsule{display:flex;width:min(620px,92vw);min-height:150px;border-radius:999px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),inset 0 0 0 1px rgba(0,0,0,.04)}
-.capsule-a{flex:0 0 40%;position:relative;background:linear-gradient(165deg,#56c25b 0%,var(--logo-green) 55%,#2f8a34 100%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px 16px 24px 32px;font-family:var(--display);font-weight:700;font-size:17px}
-.capsule-a::after{content:"";position:absolute;top:16px;left:44px;right:18px;height:14px;border-radius:999px;background:rgba(255,255,255,.28)}
-.capsule-b{flex:1;position:relative;background:linear-gradient(180deg,#fff 0%,#f1f4f2 100%);border-left:3px solid rgba(15,26,19,.08);display:flex;flex-direction:column;justify-content:center;gap:4px;padding:24px 48px 24px 32px}
-.capsule-b::after{content:"";position:absolute;top:16px;left:20px;right:48px;height:14px;border-radius:999px;background:rgba(255,255,255,.9)}
-.capsule-b small{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);position:relative;z-index:1}
-.capsule-num{font-family:var(--display);font-weight:800;font-size:clamp(20px,3vw,26px);color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+.capsule{display:flex;width:min(520px,92vw);min-height:124px;border-radius:999px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),inset 0 0 0 1px rgba(0,0,0,.04)}
+.capsule-a{flex:0 0 40%;position:relative;background:linear-gradient(165deg,#56c25b 0%,var(--logo-green) 55%,#2f8a34 100%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 20px;text-align:center;font-family:var(--display);font-weight:700;font-size:16px}
+.capsule-a::after{content:"";position:absolute;top:13px;left:38px;right:16px;height:11px;border-radius:999px;background:rgba(255,255,255,.28)}
+.capsule-b{flex:1;position:relative;background:linear-gradient(180deg,#fff 0%,#f1f4f2 100%);border-left:3px solid rgba(15,26,19,.08);display:flex;flex-direction:column;justify-content:center;gap:3px;padding:20px 40px 20px 26px}
+.capsule-b::after{content:"";position:absolute;top:13px;left:18px;right:40px;height:11px;border-radius:999px;background:rgba(255,255,255,.9)}
+.capsule-b small{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);position:relative;z-index:1}
+.capsule-num{font-family:var(--display);font-weight:800;font-size:clamp(18px,2.6vw,22px);color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
 .capsule-num:hover{color:var(--logo-green)}
-.capsule-num.multi{font-size:clamp(18px,2.4vw,22px);line-height:1.3}
-.capsule-hours{font-size:13px;color:var(--body)}
-.capsule-close{position:absolute;top:-12px;right:-12px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:var(--ink);box-shadow:0 6px 16px -4px rgba(0,0,0,.35);display:grid;place-items:center;cursor:pointer}
+.capsule-num.multi{font-size:clamp(16px,2.1vw,19px);line-height:1.3}
+.capsule-hours{font-size:12px;color:var(--body)}
+.capsule-close{position:absolute;top:-10px;right:-10px;width:34px;height:34px;border-radius:50%;border:0;background:#fff;color:var(--ink);box-shadow:0 6px 16px -4px rgba(0,0,0,.35);display:grid;place-items:center;cursor:pointer}
 .capsule-close:hover{color:var(--logo-green)}
 @media (max-width:560px){
-  .capsule{flex-direction:column;width:min(250px,80vw);border-radius:125px}
-  .capsule-a{flex:0 0 auto;padding:80px 20px 44px}
+  .capsule{flex-direction:column;width:min(220px,78vw);border-radius:110px}
+  .capsule-a{flex:0 0 auto;padding:60px 18px 44px}
   .capsule-a::after{top:22px;left:50%;right:auto;width:60%;transform:translateX(-50%)}
-  .capsule-b{border-left:0;border-top:3px solid rgba(15,26,19,.08);align-items:center;text-align:center;padding:40px 16px 88px}
-  .capsule-num{font-size:20px}
+  .capsule-b{border-left:0;border-top:3px solid rgba(15,26,19,.08);align-items:center;text-align:center;padding:32px 14px 72px}
+  .capsule-num{font-size:18px}
   .capsule-b::after{display:none}
   .capsule-close{right:-6px}
 }
@@ -360,17 +360,12 @@ button.btn{font-family:inherit}
 .app-video.on{opacity:1}
 /* En dessous de 1080 px, la maquette se réorganise (KPI sur 2 colonnes…) : on garde la version HTML. */
 @media (max-width:1080px){.app-video{display:none}}
+/* Desktop : maquette à la largeur de la vidéo (1152 px) puis réduite en bloc pour tenir dans .showcase
+   (--app-k calculé par DashboardPreview). La vidéo n'est donc jamais rognée. */
+@media (min-width:1081px){.app{width:1152px;zoom:var(--app-k,1)}}
 
 /* Filigranes : même quadrillage que le hero, en vert, sur les sections claires (estompé vers les bords). */
 .section:not(.on-dark):not(.cta){position:relative;isolation:isolate}
 .section:not(.on-dark):not(.cta)::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(62,164,67,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(62,164,67,.16) 1px,transparent 1px);background-size:56px 56px;background-position:center top;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 40%,#000 25%,transparent 80%);mask-image:radial-gradient(ellipse 75% 70% at 50% 40%,#000 25%,transparent 80%)}
 .cta-actions .btn-primary{box-shadow:none}
 
-/* Grand écran : « Avis » finit pile au bord droit du tableau de bord (= bord du conteneur),
-   le bouton « Contacter l'équipe » est poussé au-delà, dans la marge. En dessous de 1560 px il n'y a pas la place :
-   onglets et bouton restent côte à côte dans le conteneur. */
-@media (min-width:1560px){
-  .nav{position:relative}
-  .nav-links{margin-right:-14px} /* annule le padding droit du lien « Avis » */
-  .nav-cta{position:absolute;left:calc(100% + 4px);top:50%;transform:translateY(-50%)}
-}

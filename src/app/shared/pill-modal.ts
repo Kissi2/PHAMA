@@ -15,7 +15,6 @@ let nextId = 0;
     <dialog #dialog class="pill-modal" [attr.aria-labelledby]="titleId" (click)="onBackdrop($event)">
       <div class="capsule">
         <div class="capsule-a">
-          <lucide-icon name="pill" [size]="34" />
           <span [id]="titleId">{{ title() }}</span>
         </div>
         <div class="capsule-b">
@@ -29,7 +28,7 @@ let nextId = 0;
         </div>
       </div>
       <button type="button" class="capsule-close" aria-label="Fermer" (click)="close()">
-        <lucide-icon name="x" [size]="18" />
+        <lucide-icon name="x" [size]="16" />
       </button>
     </dialog>
   `,

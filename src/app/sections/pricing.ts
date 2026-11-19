@@ -1,12 +1,11 @@
 import { LucideAngularModule } from 'lucide-angular';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { PLANS, SALES_PHONES } from '../data/site.data';
-import { PillModal } from '../shared/pill-modal';
+import { PLANS } from '../data/site.data';
 import { Reveal } from '../shared/reveal.directive';
 
 @Component({
   selector: 'app-pricing',
-  imports: [LucideAngularModule, PillModal, Reveal],
+  imports: [LucideAngularModule, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="section" id="tarifs">
@@ -27,22 +26,13 @@ import { Reveal } from '../shared/reveal.directive';
                   <li><lucide-icon name="check" [strokeWidth]="2.4" />{{ feat }}</li>
                 }
               </ul>
-              @if (plan.contact) {
-                <button type="button" class="btn btn-block" [class.btn-primary]="plan.featured" [class.btn-outline]="!plan.featured" aria-haspopup="dialog" (click)="contact.open()">{{ plan.cta }}</button>
-              } @else {
-                <a href="#contact" class="btn btn-block" [class.btn-primary]="plan.featured" [class.btn-outline]="!plan.featured">{{ plan.cta }}</a>
-              }
             </div>
           }
         </div>
       </div>
     </section>
-
-    <!-- « Demander l'installation » : modale gélule de l'équipe commerciale -->
-    <app-pill-modal #contact title="Équipe commerciale" [phone]="phones" hours="Du lundi au vendredi, 8 h – 18 h" />
   `,
 })
 export class Pricing {
   protected readonly plans = PLANS;
-  protected readonly phones = SALES_PHONES;
 }

@@ -1,6 +1,6 @@
 import type { IconName } from '../shared/icons';
 
-export const CONTACT_EMAIL = 'etudes534@gmail.com';
+export const CONTACT_EMAIL = 'tresopharm@gmail.com';
 
 
 /** Numéros de l'équipe commerciale affichés dans la modale « Contacter l'équipe » (bas de page). À REMPLACER par les vrais numéros. */
@@ -192,30 +192,24 @@ export interface Plan {
   unit?: string;
   period: string;
   features: string[];
-  cta: string;
   featured?: boolean;
-  /** Ouvre la modale du service client au lieu de pointer vers #contact. */
-  contact?: boolean;
 }
 
 export const PLANS: Plan[] = [
   {
     name: 'Installation',
-    amount: '700 000',
+    amount: '500 000',
     unit: 'FCFA',
-    period: 'Paiement unique, à la mise en service',
+    period: 'Obtention de licence et mise en service',
     features: ['Installation et paramétrage complets', 'Reprise de vos données existantes', "Formation de votre équipe", 'Accompagnement au démarrage'],
-    cta: "Demander l'installation",
-    contact: true,
     featured: true,
   },
   {
-    name: 'Pharmacie Pro',
-    amount: '200 000',
+    name: 'Paiement trimestriel',
+    amount: '60 000',
     unit: 'FCFA / trimestre',
-    period: 'Facturation trimestrielle, sans engagement',
+    period: 'Chaque 3 mois, sans engagement',
     features: ['Tous les modules inclus', '1 pharmacie, utilisateurs illimités', 'Mises à jour automatiques', 'Support prioritaire WhatsApp'],
-    cta: 'Payez maintenant',
     featured: true,
   },
 ];
@@ -250,21 +244,12 @@ export const PLATFORMS = ['Web (PWA)'];
 export const FOOTER_COLUMNS = [
   {
     title: 'Modules',
-    links: [
-      { label: 'Journal des ventes', href: '#fonctionnalites' },
-      { label: 'Factures fournisseurs', href: '#fonctionnalites' },
-      { label: 'Caisse & billetage', href: '#fonctionnalites' },
-      { label: 'ASC', href: '#fonctionnalites' },
-      { label: 'Reporting', href: '#fonctionnalites' },
-    ],
+    // Les 7 modules présentés dans la section Fonctionnalités.
+    links: [FEATURE_MAIN, ...FEATURES].map((m) => ({ label: m.title, href: '#fonctionnalites' })),
   },
   {
     title: 'Ressources',
-    links: [
-      { label: 'Prise en main', href: '#etapes' },
-      { label: 'Tarifs', href: '#tarifs' },
-      { label: 'Avis', href: '#avis' },
-      { label: 'Demander une démo', href: '#contact' },
-    ],
+    // Mêmes onglets que le header (sans le bouton « Contacter l'équipe »).
+    links: NAV_LINKS,
   },
 ];

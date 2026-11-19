@@ -11,6 +11,9 @@ import {
   MOCK_SPLIT,
 } from '../data/site.data';
 
+/** Largeur de rendu de la maquette sur desktop = largeur de la vidéo (video/src/DashboardLoop.tsx). */
+const APP_WIDTH = 1152;
+
 /** Maquette décorative du tableau de bord affichée sous le hero. */
 @Component({
   // Posé directement sur <div class="app"> : il doit rester enfant direct de .showcase (perspective 3D).
@@ -141,7 +144,7 @@ import {
         class="app-video"
         [class.on]="videoOn()"
         src="dashboard-loop.mp4?v=4"
-        muted
+        [muted]="true"
         loop
         playsinline
         preload="auto"
@@ -173,11 +176,13 @@ export class DashboardPreview implements OnInit, OnDestroy {
   private readonly host = inject(ElementRef<HTMLElement>);
   private timers: ReturnType<typeof setTimeout>[] = [];
   private observer?: IntersectionObserver;
+  private resize?: ResizeObserver;
   /** La vidéo a pris le relais de la maquette HTML. */
   private started = false;
   private visible = false;
 
   ngOnInit(): void {
+    this.fitToShowcase();
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!('IntersectionObserver' in window) || reduced) {
       // Pas d'animation : maquette HTML statique, sans vidéo.
@@ -185,11 +190,11 @@ export class DashboardPreview implements OnInit, OnDestroy {
       return;
     }
 
-    // Tout se déclenche quand le tableau de bord arrive à l'écran (au moins 35 % visible) :
+    // Tout se déclenche quand le tableau de bord arrive à l'écran (au moins 20 % visible) :
     // intro CSS (redressement 3D, tracé des courbes, barres) puis vidéo Remotion en boucle.
     this.observer = new IntersectionObserver(
       ([entry]) => {
-        this.visible = entry.intersectionRatio >= 0.35;
+        this.visible = entry.intersectionRatio >= 0.2;
         if (this.visible && !this.ready()) {
           this.ready.set(true);
           // L'intro dure ≈ 2,7 s ; la 1re image de la vidéo est identique à son état final.
@@ -198,7 +203,7 @@ export class DashboardPreview implements OnInit, OnDestroy {
           this.syncPlayback();
         }
       },
-      { threshold: [0, 0.35] },
+      { threshold: [0, 0.2] },
     );
     this.observer.observe(this.host.nativeElement);
   }
@@ -206,6 +211,23 @@ export class DashboardPreview implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.timers.forEach(clearTimeout);
     this.observer?.disconnect();
+    this.resize?.disconnect();
+  }
+
+  /**
+   * Sur desktop, la maquette est dessinée à sa largeur d'origine (APP_WIDTH, celle de la vidéo Remotion)
+   * puis réduite en bloc (zoom) pour tenir dans .showcase (largeur du conteneur, du logo au bouton « Contacter l'équipe »).
+   * Ainsi la vidéo garde ses proportions : rien n'est rogné, tout est simplement plus petit.
+   */
+  private fitToShowcase(): void {
+    const host = this.host.nativeElement as HTMLElement;
+    const showcase = host.parentElement;
+    if (!showcase || !('ResizeObserver' in window)) return;
+    this.resize = new ResizeObserver(() => {
+      const k = Math.min(1, showcase.clientWidth / APP_WIDTH);
+      host.style.setProperty('--app-k', k.toFixed(4));
+    });
+    this.resize.observe(showcase);
   }
 
   /** Lecture quand c'est visible ; hors écran, pause et retour au début pour revoir toute la scène au prochain passage. */
@@ -213,6 +235,8 @@ export class DashboardPreview implements OnInit, OnDestroy {
     const v = this.video().nativeElement;
     if (!this.started) return;
     if (this.visible) {
+      // Propriété (et pas seulement attribut) muette : sinon Chrome/Safari bloquent la lecture automatique.
+      v.muted = true;
       v.play().catch(() => { /* lecture auto refusée : la maquette HTML reste affichée */ });
     } else {
       v.pause();
