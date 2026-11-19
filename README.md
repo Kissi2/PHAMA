@@ -1,6 +1,6 @@
 # TresoPharm — site vitrine
 
-Landing page de **TresoPharm**, l'application de gestion de trésorerie pour les pharmacies en Côte d'Ivoire, développée par e-sphere.
+Landing page de **TresoPharm**, l'application de gestion de trésorerie pour les pharmacies en Côte d'Ivoire, développée par e-SPHERE.
 
 - Angular 21 (composants autonomes, `OnPush`), une seule feuille de style globale : `src/styles.css`
 - Icônes : `lucide-angular` (liste des icônes embarquées : `src/app/shared/icons.ts`)

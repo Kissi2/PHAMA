@@ -12,7 +12,7 @@ import { CONTACT_EMAIL, FOOTER_COLUMNS, PLATFORMS } from '../../data/site.data';
         <div class="foot-grid">
           <div>
             <a href="#" class="logo" aria-label="TresoPharm — accueil"><img class="logo-img" src="logo-mark.png" alt="" /><span class="logo-name">Treso<span>Pharm</span></span></a>
-            <p>Application de gestion financière et de trésorerie pour les pharmacies en Côte d'Ivoire. Développée par e-sphere.</p>
+            <p>Application de gestion financière et de trésorerie pour les pharmacies en Côte d'Ivoire. Développée par e-SPHERE.</p>
             <div class="dl-row">
               @for (p of platforms; track p) {
                 <span class="dl-btn"><lucide-icon name="layout-dashboard" />{{ p }}</span>
@@ -31,13 +31,13 @@ import { CONTACT_EMAIL, FOOTER_COLUMNS, PLATFORMS } from '../../data/site.data';
 
           <div>
             <div class="foot-h">Contact</div>
-            <span class="fl">e-sphere</span>
+            <span class="fl">e-SPHERE</span>
             <span class="fl">Abidjan, Côte d'Ivoire</span>
             <a [href]="'mailto:' + email" class="fl" style="word-break:break-all">{{ email }}</a>
           </div>
         </div>
         <div class="foot-bottom">
-          <span>© 2026 e-sphere · TresoPharm. Tous droits réservés.</span>
+          <span>© 2026 e-SPHERE · TresoPharm. Tous droits réservés.</span>
           <span>TresoPharm · Gestion de trésorerie pour pharmacies</span>
         </div>
       </div>
