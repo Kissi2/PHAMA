@@ -23,7 +23,7 @@ import { Reveal } from '../shared/reveal.directive';
     </section>
 
     <!-- Modale « Contacter l'équipe » en forme de gélule : numéros de l'équipe commerciale -->
-    <app-pill-modal #team title="Équipe commerciale" [phone]="phones" hours="Du lundi au vendredi, 8 h – 18 h" />
+    <app-pill-modal #team title="Équipe commerciale" [phone]="phones" />
   `,
 })
 export class Cta {

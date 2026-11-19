@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, computed, input, viewCh
 let nextId = 0;
 
 /**
- * Modale de contact en forme de gélule : moitié verte (logo) avec le titre, moitié blanche avec le numéro.
+ * Modale de contact en forme de bulle de conversation, avec seulement les numéros (chacun cliquable).
  * S'ouvre via `open()` ; se ferme avec la croix, la touche Échap ou un clic sur le voile.
  */
 @Component({
@@ -13,23 +13,16 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <dialog #dialog class="pill-modal" [attr.aria-labelledby]="titleId" (click)="onBackdrop($event)">
-      <div class="capsule">
-        <div class="capsule-a">
-          <span [id]="titleId">{{ title() }}</span>
-        </div>
-        <div class="capsule-b">
-          <small>Appelez-nous</small>
-          @for (p of phones(); track p.tel) {
-            <a class="capsule-num" [class.multi]="phones().length > 1" [href]="'tel:' + p.tel">{{ p.label }}</a>
-          }
-          @if (hours()) {
-            <span class="capsule-hours">{{ hours() }}</span>
-          }
-        </div>
+      <!-- Bulle de conversation : uniquement les numéros (le titre reste pour les lecteurs d'écran). -->
+      <div class="bubble">
+        <span class="sr-only" [id]="titleId">{{ title() }}</span>
+        @for (p of phones(); track p.tel) {
+          <a class="bubble-num" [href]="'tel:' + p.tel">{{ p.label }}</a>
+        }
+        <button type="button" class="bubble-close" aria-label="Fermer" (click)="close()">
+          <lucide-icon name="x" [size]="14" />
+        </button>
       </div>
-      <button type="button" class="capsule-close" aria-label="Fermer" (click)="close()">
-        <lucide-icon name="x" [size]="16" />
-      </button>
     </dialog>
   `,
 })
@@ -37,7 +30,6 @@ export class PillModal {
   readonly title = input.required<string>();
   /** Un ou plusieurs numéros (affichés les uns sous les autres, chacun cliquable). */
   readonly phone = input.required<string | string[]>();
-  readonly hours = input<string>('');
 
   protected readonly titleId = `pill-title-${nextId++}`;
   protected readonly phones = computed(() =>

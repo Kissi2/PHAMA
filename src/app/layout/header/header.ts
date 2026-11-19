@@ -40,7 +40,7 @@ import { PillModal } from '../../shared/pill-modal';
     </div>
 
     <!-- Même modale gélule que l'encadré de contact : numéros de l'équipe commerciale -->
-    <app-pill-modal #sales title="Équipe commerciale" [phone]="phones" hours="Du lundi au vendredi, 8 h – 18 h" />
+    <app-pill-modal #sales title="Équipe commerciale" [phone]="phones" />
   `,
 })
 export class Header {
