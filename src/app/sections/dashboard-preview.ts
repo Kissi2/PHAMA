@@ -16,7 +16,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, inje
   host: { class: 'app' },
   template: `
     <img
-      src="dashboard.webp"
+      src="dashboard.webp?v=2"
       width="2876"
       height="1420"
       alt="Tableau de bord TresoPharm : soldes bancaires et de caisse, factures en attente, activité commerciale"

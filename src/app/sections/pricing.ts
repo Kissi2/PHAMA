@@ -13,7 +13,7 @@ import { Reveal } from '../shared/reveal.directive';
         <div class="sec-head rv">
           <span class="eyebrow">Tarifs</span>
           <h2>Un abonnement, zéro surprise.</h2>
-          <p>Tous les modules inclus dès le premier plan. Aucun module payant en supplément.</p>
+          <p>Tous les modules sont inclus dans l'abonnement. Aucun module payant en supplément.</p>
         </div>
         <div class="price-grid">
           @for (plan of plans; track plan.name) {

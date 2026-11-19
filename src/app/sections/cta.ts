@@ -13,7 +13,7 @@ import { Reveal } from '../shared/reveal.directive';
         <div class="cta-box rv">
           <div>
             <h2>Prêt à maîtriser votre trésorerie ?</h2>
-            <p>Demandez une démonstration gratuite. Mise en place en une journée, accompagnement inclus.</p>
+            <p>Demandez une démonstration gratuite. Installation, formation de votre équipe et accompagnement au démarrage inclus.</p>
           </div>
           <div class="cta-actions">
             <button type="button" class="btn btn-primary" aria-haspopup="dialog" (click)="team.open()">Contacter l'équipe</button>
@@ -22,7 +22,7 @@ import { Reveal } from '../shared/reveal.directive';
       </div>
     </section>
 
-    <!-- Modale « Contacter l'équipe » en forme de gélule : numéros de l'équipe commerciale -->
+    <!-- Bulle « Contacter l'équipe » : numéros de l'équipe commerciale -->
     <app-pill-modal #team title="Équipe commerciale" [phone]="phones" />
   `,
 })

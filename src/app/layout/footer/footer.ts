@@ -38,7 +38,7 @@ import { CONTACT_EMAIL, FOOTER_COLUMNS, PLATFORMS } from '../../data/site.data';
         </div>
         <div class="foot-bottom">
           <span>© 2026 e-sphere · TresoPharm. Tous droits réservés.</span>
-          <span>e-Pharma · Gestion de trésorerie pour pharmacies</span>
+          <span>TresoPharm · Gestion de trésorerie pour pharmacies</span>
         </div>
       </div>
     </footer>

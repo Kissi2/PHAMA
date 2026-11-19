@@ -1,59 +1,33 @@
-# LeTresorier
+# TresoPharm — site vitrine
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.13.
+Landing page de **TresoPharm**, l'application de gestion de trésorerie pour les pharmacies en Côte d'Ivoire, développée par e-sphere.
 
-## Development server
+- Angular 21 (composants autonomes, `OnPush`), une seule feuille de style globale : `src/styles.css`
+- Icônes : `lucide-angular` (liste des icônes embarquées : `src/app/shared/icons.ts`)
+- Hébergement : Vercel, relié au dépôt GitHub. Chaque push sur `main` est déployé automatiquement.
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Lancer et construire
 
 ```bash
-ng generate component component-name
+npm install
+npm start          # http://localhost:4200
+npm run build      # sortie dans dist/le-tresorier/browser
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Où modifier quoi
 
-```bash
-ng generate --help
-```
+| Contenu | Fichier |
+|---|---|
+| Textes, chiffres, tarifs, avis, liens du pied de page, numéros et e-mail de contact | `src/app/data/site.data.ts` |
+| Sections de la page (hero, fonctionnalités, tarifs…) | `src/app/sections/` |
+| Header, pied de page | `src/app/layout/` |
+| Bulle « Contacter l'équipe » | `src/app/shared/pill-modal.ts` |
+| Intro d'ouverture (logo + « TresoPharm » tapé), balises de partage | `src/index.html` |
+| Capture du tableau de bord et son animation au défilement | `public/dashboard.webp`, `src/app/sections/dashboard-preview.ts` |
+| Image d'aperçu des partages (1200 × 630) | `public/og-image.png` |
 
-## Building
+## À savoir
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Intro :** jouée une fois par visite (onglet), sautée si l'utilisateur a désactivé les animations. Angular démarre après elle (`src/main.ts`).
+- **Capture du tableau de bord :** si vous la remplacez, changez aussi le numéro `?v=` de `dashboard.webp` dans `dashboard-preview.ts`, pour que les navigateurs ne gardent pas l'ancienne en cache.
+- **Branche :** tout se fait sur `main`.

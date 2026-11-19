@@ -3,7 +3,7 @@ import type { IconName } from '../shared/icons';
 export const CONTACT_EMAIL = 'tresopharm@gmail.com';
 
 
-/** Numéros de l'équipe commerciale affichés dans la modale « Contacter l'équipe » (bas de page). À REMPLACER par les vrais numéros. */
+/** Numéros de l'équipe commerciale affichés dans la bulle « Contacter l'équipe » (header et encadré de contact). À REMPLACER par les vrais numéros. */
 export const SALES_PHONES = ['+225 00 00 00 00 00', '+225 00 00 00 00 01'];
 
 export const NAV_LINKS = [
@@ -15,7 +15,7 @@ export const NAV_LINKS = [
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
 
-export const HERO_TRUST = ['Plan comptable OHADA', 'Desktop & Web (PWA)', "30 jours d'essai gratuit"];
+export const HERO_TRUST = ['Plan comptable OHADA', 'Web (PWA), installable sur PC et mobile', 'Installation et formation incluses'];
 
 /* ── Bandeau défilant ─────────────────────────────────────────────── */
 
