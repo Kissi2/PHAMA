@@ -22,8 +22,89 @@
       if (location.hash) history.replaceState(null, '', location.pathname + location.search);
       window.scrollTo(0, 0);
     </script>
+
+    <!-- Intro d'ouverture (logo qui se forme, puis « TresoPharm » tapé lettre à lettre).
+         En HTML/CSS pur pour s'afficher dès la 1re image, avant qu'Angular démarre (cf. main.ts). -->
+    <style>
+      .intro{position:fixed;inset:0;z-index:1000;background:#fff;display:grid;place-items:center;cursor:pointer;transition:opacity .5s cubic-bezier(.22,1,.36,1)}
+      .intro.out{opacity:0;pointer-events:none}
+      html.intro-on,html.intro-on body{overflow:hidden}
+      .intro-lockup{display:flex;align-items:center;gap:14px}
+      .intro-logo{position:relative;width:62px;height:64px;flex:none;transform:translateX(var(--dx,0px)) scale(2.4);transition:transform .7s cubic-bezier(.65,0,.35,1)}
+      .intro.lock .intro-logo{transform:none}
+      .intro-logo img{position:absolute;inset:0;width:100%;height:100%;opacity:0;animation:intro-piece .6s cubic-bezier(.22,1,.36,1) forwards}
+      /* Le logo est découpé en 5 morceaux (même image, zones différentes) qui viennent s'assembler. */
+      .intro-logo .p1{clip-path:inset(62% 0 0 0);--from:translate(-18px,26px) rotate(-35deg);animation-delay:.05s}
+      .intro-logo .p2{clip-path:inset(30% 70% 38% 0);--from:translateX(-34px);animation-delay:.2s}
+      .intro-logo .p3{clip-path:inset(0 0 70% 0);--from:translateY(-30px);animation-delay:.32s}
+      .intro-logo .p4{clip-path:inset(30% 0 38% 70%);--from:translateX(34px);animation-delay:.44s}
+      .intro-logo .p5{clip-path:inset(30% 30% 38% 30%);--from:scale(.3);animation-delay:.6s}
+      @keyframes intro-piece{from{opacity:0;transform:var(--from)}to{opacity:1;transform:none}}
+      .intro-text{font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif}
+      .intro-name{position:relative;display:block;font-weight:800;font-size:38px;line-height:1.05;letter-spacing:-.02em;color:#0f1a13;white-space:nowrap}
+      .intro-name span{opacity:0}
+      .intro-name span.on{opacity:1}
+      .intro-name .g{color:#3ea443}
+      .intro-caret{position:absolute;top:4px;bottom:2px;left:0;width:2.5px;background:#0f1a13;opacity:0}
+      .intro.typing .intro-caret{opacity:1;animation:intro-blink .8s steps(1) infinite}
+      @keyframes intro-blink{50%{opacity:0}}
+      .intro-tag{display:block;margin-top:4px;font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:14.5px;color:#2f7a45;opacity:0;transform:translateY(4px);transition:opacity .5s,transform .5s}
+      .intro.tag .intro-tag{opacity:1;transform:none}
+      @media (max-width:480px){.intro-name{font-size:30px}.intro-logo{width:50px;height:52px}}
+    </style>
   </head>
   <body>
+    <div class="intro" id="intro" aria-hidden="true" title="Passer l'intro">
+      <div class="intro-lockup">
+        <div class="intro-logo">
+          <img class="p1" src="logo-mark.png" alt="" /><img class="p2" src="logo-mark.png" alt="" /><img class="p3" src="logo-mark.png" alt="" /><img class="p4" src="logo-mark.png" alt="" /><img class="p5" src="logo-mark.png" alt="" />
+        </div>
+        <div class="intro-text">
+          <span class="intro-name"><span>T</span><span>r</span><span>e</span><span>s</span><span>o</span><span class="g">P</span><span class="g">h</span><span class="g">a</span><span class="g">r</span><span class="g">m</span><i class="intro-caret"></i></span>
+          <span class="intro-tag">Maîtrisez votre trésorerie</span>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Déroulé (≈ 4,6 s) : logo assemblé (0 → 1,2 s), tenu, puis réduit et glissé à gauche (2,2 s),
+      // « TresoPharm » tapé lettre à lettre (2,9 s), slogan (3,8 s), fondu vers le site (4,6 s).
+      // Clic ou touche : on passe directement au site. main.ts attend window.__intro avant de démarrer Angular.
+      (function () {
+        var el = document.getElementById('intro');
+        var root = document.documentElement;
+        var timers = [];
+        var finish;
+        window.__intro = new Promise(function (r) { finish = r; });
+        window.__introHide = function () {
+          el.classList.add('out');
+          root.classList.remove('intro-on');
+          setTimeout(function () { el.remove(); }, 550);
+        };
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); finish(); return; }
+        root.classList.add('intro-on');
+
+        var logo = el.querySelector('.intro-logo');
+        var text = el.querySelector('.intro-text');
+        var letters = el.querySelectorAll('.intro-name > span');
+        var caret = el.querySelector('.intro-caret');
+        // Logo centré à l'écran tant que le texte n'est pas là : décalage = moitié de (largeur du texte + espace).
+        function center() { logo.style.setProperty('--dx', (text.offsetWidth + 14) / 2 + 'px'); }
+        center();
+        if (document.fonts) document.fonts.ready.then(center);
+
+        function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+        function end() { timers.forEach(clearTimeout); el.removeEventListener('click', end); removeEventListener('keydown', end); finish(); }
+        at(2200, function () { el.classList.add('lock'); });
+        at(2900, function () { el.classList.add('typing'); });
+        letters.forEach(function (l, i) {
+          at(2950 + i * 85, function () { l.classList.add('on'); caret.style.left = l.offsetLeft + l.offsetWidth + 2 + 'px'; });
+        });
+        at(3800, function () { el.classList.add('tag'); });
+        at(4600, end);
+        el.addEventListener('click', end);
+        addEventListener('keydown', end);
+      })();
+    </script>
     <app-root></app-root>
   </body>
 </html>

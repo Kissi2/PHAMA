@@ -21,7 +21,7 @@ import { DashboardPreview } from './dashboard-preview';
           </div>
         </div>
 
-        <div class="showcase rv" aria-label="Aperçu du tableau de bord TresoPharm" role="img">
+        <div class="showcase">
           <div appDashboardPreview></div>
         </div>
       </div>
