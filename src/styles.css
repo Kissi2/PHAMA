@@ -87,7 +87,7 @@ p{margin:0}
 
 /* Aperçu du tableau de bord (capture réelle, cf. DashboardPreview) */
 /* Pleine largeur du conteneur : du logo TresoPharm à la fin du bouton « Contacter l'équipe ». */
-.showcase{position:relative;margin:64px auto 0;perspective:1800px;animation:dash-rise 1.3s cubic-bezier(.16,1,.3,1) .45s both}
+.showcase{position:relative;margin:64px auto 0;perspective:1400px;animation:dash-rise 1.3s cubic-bezier(.16,1,.3,1) .45s both}
 @keyframes dash-rise{from{opacity:0;transform:translateY(140px)}to{opacity:1;transform:none}}
 .showcase::before{content:"";position:absolute;left:10%;right:10%;top:8%;height:70%;background:radial-gradient(closest-side,rgba(244,183,62,.28),transparent);filter:blur(40px);z-index:0}
 .app{position:relative;z-index:1;background:#fff;border-radius:var(--r-sm) var(--r-sm) 0 0;box-shadow:var(--shadow-lg),0 0 0 1px rgba(255,255,255,.08);overflow:hidden;transform-origin:50% 100%;will-change:transform}

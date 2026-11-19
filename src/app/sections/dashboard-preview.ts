@@ -5,9 +5,9 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, inje
  *
  * Animation reprise du modèle 21st.dev « Treasury Management Fintech Landing Page » :
  * - à l'arrivée, le bloc monte de 140 px en apparaissant (CSS, `.showcase`) ;
- * - au défilement, l'écran est « couché » (rotateX 24°, échelle 0,9) et se redresse jusqu'à plat
- *   entre le moment où son haut atteint 96 % de la hauteur de l'écran et celui où il atteint 18 %
- *   (12° / 0,96 / 40 % sous 900 px), avec un léger lissage comme le `scrub: 0.7` de GSAP.
+ * - au défilement, l'écran est « couché » (rotateX 40°, échelle 0,86 : plus marqué que le modèle, 24° / 0,9)
+ *   et se redresse jusqu'à plat entre le moment où son haut atteint le bas de l'écran et celui où il atteint 15 %
+ *   (20° / 0,94 / 40 % sous 900 px), avec un léger lissage comme le `scrub: 0.7` de GSAP.
  */
 @Component({
   // Posé directement sur <div class="app"> : il doit rester enfant direct de .showcase (perspective 3D).
@@ -54,8 +54,8 @@ export class DashboardPreview implements OnInit, OnDestroy {
     const wrap = this.host.nativeElement.parentElement ?? this.host.nativeElement;
     this.wide = innerWidth >= 900;
     const top = wrap.getBoundingClientRect().top;
-    const start = innerHeight * 0.96;
-    const end = innerHeight * (this.wide ? 0.18 : 0.4);
+    const start = innerHeight;
+    const end = innerHeight * (this.wide ? 0.15 : 0.4);
     return Math.min(1, Math.max(0, (start - top) / (start - end)));
   }
 
@@ -79,8 +79,8 @@ export class DashboardPreview implements OnInit, OnDestroy {
 
   private apply(): void {
     const p = this.current;
-    const rx = (this.wide ? 24 : 12) * (1 - p);
-    const s = (this.wide ? 0.9 : 0.96) + (this.wide ? 0.1 : 0.04) * p;
+    const rx = (this.wide ? 40 : 20) * (1 - p);
+    const s = (this.wide ? 0.86 : 0.94) + (this.wide ? 0.14 : 0.06) * p;
     const y = (this.wide ? -10 : 0) * (1 - p);
     this.host.nativeElement.style.transform = `translateY(${y.toFixed(2)}px) rotateX(${rx.toFixed(3)}deg) scale(${s.toFixed(4)})`;
   }
