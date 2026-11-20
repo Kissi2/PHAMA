@@ -146,7 +146,7 @@ p{margin:0}
 .steps-sec{background:linear-gradient(180deg,#10291a,var(--deep));color:rgba(255,255,255,.7);position:relative;overflow:hidden}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
 /* La ligne s'arrête au centre du cercle 04 : 4 colonnes, gap 20px → début de la 4e à 75% + 15px, + rayon 23px. */
-.steps::before{content:"";position:absolute;top:23px;left:24px;right:calc(25% - 38px);height:1px;background:linear-gradient(90deg,rgba(244,183,62,.6),rgba(255,255,255,.08))}
+.steps::before{content:"";position:absolute;top:23px;left:24px;right:calc(25% - 38px);height:1px;background:rgba(244,183,62,.45)}
 .step-n{width:46px;height:46px;border-radius:50%;background:var(--logo-green);box-shadow:0 0 0 4px rgba(62,164,67,.18);display:grid;place-items:center;font-family:var(--display);font-weight:700;color:#fff;position:relative}
 .step h3{font-size:18px;margin-top:22px}
 .step p{margin-top:10px;font-size:15px;color:rgba(255,255,255,.6)}
@@ -190,9 +190,6 @@ p{margin:0}
 .foot-h{color:#fff;font-weight:600;font-size:14px;margin-bottom:16px}
 .foot-grid a.fl,.foot-grid span.fl{display:block;padding:5px 0;transition:color .2s}
 .foot-grid a.fl:hover{color:#fff}
-.dl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;justify-content:center;max-width:270px} /* même largeur que le texte au-dessus : badge centré sous lui */
-.dl-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.8);padding:8px 12px;border-radius:var(--r-sm);background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
-.dl-btn svg{width:15px;height:15px}
 .foot-bottom{margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
 
 /* Reveal */

@@ -164,7 +164,6 @@ export const TESTIMONIALS = [
 
 /* ── Pied de page ─────────────────────────────────────────────────── */
 
-export const PLATFORMS = ['Web (PWA)'];
 
 export const FOOTER_COLUMNS = [
   {

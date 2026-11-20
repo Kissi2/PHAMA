@@ -1,10 +1,9 @@
-import { LucideAngularModule } from 'lucide-angular';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CONTACT_EMAIL, FOOTER_COLUMNS, PLATFORMS } from '../../data/site.data';
+import { CONTACT_EMAIL, FOOTER_COLUMNS } from '../../data/site.data';
 
 @Component({
   selector: 'app-footer',
-  imports: [LucideAngularModule],
+  imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <footer class="footer">
@@ -13,11 +12,6 @@ import { CONTACT_EMAIL, FOOTER_COLUMNS, PLATFORMS } from '../../data/site.data';
           <div>
             <a href="#" class="logo" aria-label="TresoPharm — accueil"><img class="logo-img" src="logo-mark.png" alt="" /><span class="logo-name">Treso<span>Pharm</span></span></a>
             <p>Application de gestion financière et de trésorerie pour les pharmacies en Côte d'Ivoire. Développée par e-SPHERE.</p>
-            <div class="dl-row">
-              @for (p of platforms; track p) {
-                <span class="dl-btn"><lucide-icon name="layout-dashboard" />{{ p }}</span>
-              }
-            </div>
           </div>
 
           @for (col of columns; track col.title) {
@@ -46,6 +40,5 @@ import { CONTACT_EMAIL, FOOTER_COLUMNS, PLATFORMS } from '../../data/site.data';
 })
 export class Footer {
   protected readonly columns = FOOTER_COLUMNS;
-  protected readonly platforms = PLATFORMS;
   protected readonly email = CONTACT_EMAIL;
 }
