@@ -3,8 +3,8 @@ import type { IconName } from '../shared/icons';
 export const CONTACT_EMAIL = 'tresopharm@gmail.com';
 
 
-/** Numéros de l'équipe commerciale affichés dans la bulle « Contacter l'équipe » (header et encadré de contact). À REMPLACER par les vrais numéros. */
-export const SALES_PHONES = ['+225 00 00 00 00 00', '+225 00 00 00 00 01'];
+/** Numéros de l'équipe commerciale affichés dans la bulle « Contacter l'équipe » (header et encadré de contact). */
+export const SALES_PHONES = ['+225 07 08 72 68 83', '+225 01 03 52 14 52'];
 
 export const NAV_LINKS = [
   { label: 'Produit', href: '#produit' },
