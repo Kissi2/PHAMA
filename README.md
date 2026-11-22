@@ -31,3 +31,4 @@ npm run build      # sortie dans dist/le-tresorier/browser
 - **Intro :** jouée une fois par visite (onglet), sautée si l'utilisateur a désactivé les animations. Angular démarre après elle (`src/main.ts`).
 - **Capture du tableau de bord :** si vous la remplacez, changez aussi le numéro `?v=` de `dashboard.webp` dans `dashboard-preview.ts`, pour que les navigateurs ne gardent pas l'ancienne en cache.
 - **Branche :** tout se fait sur `main`.
+# site-tresopharm
